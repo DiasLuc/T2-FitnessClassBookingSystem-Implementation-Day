@@ -1,9 +1,21 @@
 Here’s a complete set of **user stories** for each feature of your **Fitness Class Booking System**, each paired with clear **business rules**.
 
 ---
+### **1. Student Registration**
 
+**User Story:**
+As a student,
+I want to register for an account,
+So that I can book and manage my fitness class reservations.
 
-### **1. Student Login with JWT**
+**Business Rules:**
+
+* Students must provide a unique username, and a password.
+* A success message is shown upon registration, and the student can log in immediately.
+
+---
+
+### **2. Student Login with JWT**
 
 **User Story:**
 As a student,
@@ -18,7 +30,7 @@ So that I can access my personal bookings and book classes.
 
 ---
 
-### **2. List All Available Classes (Public)**
+### **3. List All Available Classes (Public)**
 
 **User Story:**
 As a visitor,
@@ -32,7 +44,7 @@ So that I can decide which class I might want to join.
 
 ---
 
-### **3. Get Class Details (Public)**
+### **4. Get Class Details (Public)**
 
 **User Story:**
 As a visitor,
@@ -47,7 +59,7 @@ So that I can learn more before deciding to register or book.
 
 ---
 
-### **4. Book and Cancel Spots (Student Login Needed)**
+### **5. Book and Cancel Spots (Student Login Needed)**
 
 **User Story:**
 As a student,
@@ -63,7 +75,7 @@ So that I can manage my participation in upcoming sessions.
 
 ---
 
-### **5. View Current User’s Bookings (Student Login Needed)**
+### **6. View Current User’s Bookings (Student Login Needed)**
 
 **User Story:**
 As a student,
@@ -77,8 +89,22 @@ So that I can keep track of my fitness schedule.
 
 ---
 
+### **6. Admin Registration**
 
-### **6. Admin Login with JWT**
+**User Story:**
+As an admin,
+I want to register for an admin account,
+So that I can manage the fitness classes in the system.
+
+**Business Rules:**
+
+* Admin username must be unique.
+* Only registered admins can log in to the admin dashboard.
+
+---
+
+
+### **7. Admin Login with JWT**
 
 **User Story:**
 As an admin,
@@ -93,7 +119,7 @@ So that I can access and manage classes in the system.
 
 ---
 
-### **7. Create a New Class (Admin Login Needed)**
+### **8. Create a New Class (Admin Login Needed)**
 
 **User Story:**
 As an admin,
@@ -108,7 +134,7 @@ So that students can book and participate in them.
 
 ---
 
-### **8. Remove Class (Admin Login Needed)**
+### **9. Remove Class (Admin Login Needed)**
 
 **User Story:**
 As an admin,
