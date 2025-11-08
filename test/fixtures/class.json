@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Yoga Basics",
+    "description": "Beginner yoga class",
+    "instructor": "Alice",
+    "dateTime": "2025-12-01T10:00:00Z",
+    "capacity": 10
+  },
+  {
+    "title": "HIIT Advanced",
+    "description": "High intensity interval training",
+    "instructor": "Bob",
+    "dateTime": "2025-12-02T18:00:00Z",
+    "capacity": 15
+  }
+]
