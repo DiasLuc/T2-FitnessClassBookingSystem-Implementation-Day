@@ -1,3 +1,70 @@
+
+# Fitness Class Booking System API
+
+## Overview
+This project is a RESTful API for managing fitness class bookings, student and admin accounts, and class schedules. It is built with Express.js, uses JWT for authentication, and stores data in memory. The API is documented with Swagger and follows a layered architecture (routes, controllers, services, models).
+
+## Features
+- Student registration and login (JWT authentication)
+- Admin registration and login (JWT authentication)
+- List all available classes (public)
+- Get class details (public)
+- Book and cancel class spots (student login required)
+- View current user’s bookings (student login required)
+- Create and remove classes (admin login required)
+- Swagger documentation and UI
+
+## Setup Instructions
+1. **Install dependencies:**
+	```bash
+	npm install express swagger-ui-express jsonwebtoken
+	```
+2. **Run the server:**
+	```bash
+	node app.js
+	```
+3. **Access the API:**
+	- Base URL: `http://localhost:3000`
+	- Swagger UI: `http://localhost:3000/api-docs`
+
+## API Documentation
+See [resources/swagger.json](resources/swagger.json) for the full OpenAPI spec. You can interact with the API via Swagger UI at `/api-docs`.
+
+## Project Structure
+```
+├── app.js
+├── routes/
+│   ├── studentRoutes.js
+│   ├── adminRoutes.js
+│   ├── classRoutes.js
+│   └── bookingRoutes.js
+├── controllers/
+│   ├── studentController.js
+│   ├── adminController.js
+│   ├── classController.js
+│   └── bookingController.js
+├── service/
+│   ├── authMiddleware.js
+│   ├── studentService.js
+│   ├── adminService.js
+│   ├── classService.js
+│   └── bookingService.js
+├── model/
+│   ├── student.js
+│   ├── admin.js
+│   ├── class.js
+│   └── booking.js
+├── resources/
+│   └── swagger.json
+└── README.md
+```
+
+## Usage Notes
+- All authentication-protected endpoints require a JWT token in the `Authorization` header as `Bearer <token>`.
+- Data is stored in memory and will reset when the server restarts.
+- Error responses follow the status codes and messages described in the Swagger documentation.
+
+---
 Here’s a complete set of **user stories** for each feature of your **Fitness Class Booking System**, each paired with clear **business rules**.
 
 ---
@@ -89,7 +156,7 @@ So that I can keep track of my fitness schedule.
 
 ---
 
-### **6. Admin Registration**
+### **7. Admin Registration**
 
 **User Story:**
 As an admin,
@@ -104,7 +171,7 @@ So that I can manage the fitness classes in the system.
 ---
 
 
-### **7. Admin Login with JWT**
+### **8. Admin Login with JWT**
 
 **User Story:**
 As an admin,
@@ -119,7 +186,7 @@ So that I can access and manage classes in the system.
 
 ---
 
-### **8. Create a New Class (Admin Login Needed)**
+### **9. Create a New Class (Admin Login Needed)**
 
 **User Story:**
 As an admin,
@@ -134,7 +201,7 @@ So that students can book and participate in them.
 
 ---
 
-### **9. Remove Class (Admin Login Needed)**
+### **10. Remove Class (Admin Login Needed)**
 
 **User Story:**
 As an admin,
@@ -145,6 +212,4 @@ So that students can no longer book or view it.
 
 * Only authenticated admins can delete classes.
 * Once deleted or inactive, the class no longer appears in public listings.
-
-
 

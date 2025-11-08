@@ -1,0 +1,306 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Fitness Class Booking System API",
+    "version": "1.0.0",
+    "description": "REST API for managing fitness class bookings, students, and admins."
+  },
+  "servers": [{ "url": "http://localhost:3000" }],
+  "tags": [
+    { "name": "Student" },
+    { "name": "Admin" },
+    { "name": "Class" },
+    { "name": "Booking" }
+  ],
+  "paths": {
+    "/api/students/register": {
+      "post": {
+        "tags": ["Student"],
+        "summary": "Register a new student",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/StudentRegister" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Registration successful", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/StudentRegisterResponse" } } } },
+          "400": { "description": "Username already exists" }
+        }
+      }
+    },
+    "/api/students/login": {
+      "post": {
+        "tags": ["Student"],
+        "summary": "Student login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Login" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login successful", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/LoginResponse" } } } },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
+    "/api/students/bookings": {
+      "get": {
+        "tags": ["Student"],
+        "summary": "Get current student's bookings",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "List of bookings", "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Booking" } } } } },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/admins/register": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Register a new admin",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AdminRegister" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Admin registration successful", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AdminRegisterResponse" } } } },
+          "400": { "description": "Username already exists" }
+        }
+      }
+    },
+    "/api/admins/login": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Admin login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Login" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login successful", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/LoginResponse" } } } },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
+    "/api/classes": {
+      "get": {
+        "tags": ["Class"],
+        "summary": "List all available classes",
+        "responses": {
+          "200": { "description": "List of classes", "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Class" } } } } }
+        }
+      },
+      "post": {
+        "tags": ["Class"],
+        "summary": "Create a new class",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ClassCreate" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Class created", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ClassCreateResponse" } } } },
+          "400": { "description": "Class date/time must be in the future" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/classes/{id}": {
+      "get": {
+        "tags": ["Class"],
+        "summary": "Get class details",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": {
+          "200": { "description": "Class details", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Class" } } } },
+          "404": { "description": "Class not found or inactive" }
+        }
+      },
+      "delete": {
+        "tags": ["Class"],
+        "summary": "Remove a class",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": {
+          "200": { "description": "Class removed" },
+          "404": { "description": "Class not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/bookings/book": {
+      "post": {
+        "tags": ["Booking"],
+        "summary": "Book a spot in a class",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BookingRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Booking successful" },
+          "400": { "description": "Class is full / Already booked / Class not found or inactive" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/api/bookings/cancel": {
+      "post": {
+        "tags": ["Booking"],
+        "summary": "Cancel a booking",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BookingRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Booking cancelled" },
+          "400": { "description": "Booking not found" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "StudentRegister": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["username", "password"]
+      },
+      "StudentRegisterResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "student": { "$ref": "#/components/schemas/Student" }
+        }
+      },
+      "AdminRegister": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["username", "password"]
+      },
+      "AdminRegisterResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "admin": { "$ref": "#/components/schemas/Admin" }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["username", "password"]
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "token": { "type": "string" }
+        }
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "username": { "type": "string" }
+        }
+      },
+      "Admin": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "username": { "type": "string" }
+        }
+      },
+      "Class": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "instructor": { "type": "string" },
+          "dateTime": { "type": "string", "format": "date-time" },
+          "capacity": { "type": "integer" },
+          "active": { "type": "boolean" },
+          "bookings": { "type": "integer" }
+        }
+      },
+      "ClassCreate": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "instructor": { "type": "string" },
+          "dateTime": { "type": "string", "format": "date-time" },
+          "capacity": { "type": "integer" }
+        },
+        "required": ["title", "description", "instructor", "dateTime", "capacity"]
+      },
+      "ClassCreateResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "class": { "$ref": "#/components/schemas/Class" }
+        }
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "studentId": { "type": "integer" },
+          "classId": { "type": "integer" },
+          "dateTime": { "type": "string", "format": "date-time" }
+        }
+      },
+      "BookingRequest": {
+        "type": "object",
+        "properties": {
+          "classId": { "type": "integer" }
+        },
+        "required": ["classId"]
+      }
+    }
+  }
+}
