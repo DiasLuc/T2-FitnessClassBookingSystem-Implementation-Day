@@ -1,3 +1,0 @@
---require dotenv/config
---reporter mochawesome
---timeout 10000
