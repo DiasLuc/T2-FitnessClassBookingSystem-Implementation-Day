@@ -1,0 +1,6 @@
+[
+  { "username": "loginuser1", "password": "ValidPass123" },
+  { "username": "loginuser2", "password": "AnotherPass456" },
+  { "username": "wronguser", "password": "wrongpass" },
+  { "username": "loginuser1", "password": "ValidPass123" }
+]

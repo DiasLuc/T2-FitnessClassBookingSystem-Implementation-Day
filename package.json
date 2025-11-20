@@ -16,6 +16,8 @@
      "test": "mocha --config test/mocha.config.json",
      "test:html": "mocha --reporter mochawesome --config test/mocha.config.json",
      "test:student-registration": "mocha test/student-registration/student-registration.test.js --reporter spec",
-     "test:student-registration:html": "mocha test/student-registration/student-registration.test.js --reporter mochawesome"
+  "test:student-registration:html": "mocha test/student-registration/student-registration.test.js --reporter mochawesome",
+  "test:student-login": "mocha test/student-login/student-login.test.js --reporter spec",
+  "test:student-login:html": "mocha test/student-login/student-login.test.js --reporter mochawesome"
   }
 }

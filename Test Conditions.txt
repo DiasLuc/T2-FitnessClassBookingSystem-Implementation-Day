@@ -6,52 +6,52 @@ C	Try to register with missing required info	Failure due to missing required fie
 
 Feature #2 – Student Login with JWT
 ID	Condition	Expected Result	Layer
-D	Try to log in with valid username and password	Successful login and JWT token issued	API
-E	Try to log in with invalid username or password	Login failure with appropriate error message	API
-F	Try to access protected route without JWT	Access denied due to missing authentication	API
-G	Try to access protected route with expired or invalid JWT	Access denied due to invalid token	API
+A	Try to log in with valid username and password	Successful login and JWT token issued	API
+B	Try to log in with invalid username or password	Login failure with appropriate error message	API
+C	Try to access protected route without JWT	Access denied due to missing authentication	API
+D	Try to access protected route with expired or invalid JWT	Access denied due to invalid token	API
 Feature #3 – List All Available Classes (Public)
 ID	Condition	Expected Result	Layer
-H	Retrieve list of classes without authentication	List of all available classes returned	API
-I	Retrieve list when no classes are available	Empty list returned with appropriate message	API
-J	Verify that each class displays required fields	Response includes id, name, instructor, time, capacity, and available spots	API
+A	Retrieve list of classes without authentication	List of all available classes returned	API
+B	Retrieve list when no classes are available	Empty list returned with appropriate message	API
+C	Verify that each class displays required fields	Response includes id, name, instructor, time, capacity, and available spots	API
 Feature #4 – Get Class Details (Public)
 ID	Condition	Expected Result	Layer
-K	Retrieve details for existing active class	Class details displayed correctly	API
-L	Retrieve details for non-existent class	Error message indicating class not found	API
-M	Retrieve details for inactive class	Error message indicating class unavailable	API
+A	Retrieve details for existing active class	Class details displayed correctly	API
+B	Retrieve details for non-existent class	Error message indicating class not found	API
+C	Retrieve details for inactive class	Error message indicating class unavailable	API
 Feature #5 – Book and Cancel Spots (Student Login Needed)
 ID	Condition	Expected Result	Layer
-N	Try to book a class with valid JWT and available spots	Booking successful and spots reduced by one	API
-O	Try to book a class without authentication	Booking denied due to missing authentication	API
-P	Try to book a full class	Booking denied due to capacity limit reached	API
-Q	Try to book the same class twice	Booking denied due to duplicate booking	API
-R	Try to cancel a booking successfully	Booking canceled and spot count updated	API
+A	Try to book a class with valid JWT and available spots	Booking successful and spots reduced by one	API
+B	Try to book a class without authentication	Booking denied due to missing authentication	API
+C	Try to book a full class	Booking denied due to capacity limit reached	API
+D	Try to book the same class twice	Booking denied due to duplicate booking	API
+E	Try to cancel a booking successfully	Booking canceled and spot count updated	API
 Feature #6 – View Current User’s Bookings (Student Login Needed)
 ID	Condition	Expected Result	Layer
-S	View bookings with valid JWT	List of current and past bookings displayed	API
-T	View bookings without authentication	Access denied due to missing authentication	API
-U	Verify order of bookings in response	Bookings returned sorted by class date/time	API
+A	View bookings with valid JWT	List of current and past bookings displayed	API
+B	View bookings without authentication	Access denied due to missing authentication	API
+C	Verify order of bookings in response	Bookings returned sorted by class date/time	API
 Feature #7 – Admin Registration
 ID	Condition	Expected Result	Layer
-V	Try to register new admin with unique username and valid info	Successful admin registration	API
-W	Try to register admin with existing username	Registration fails due to non-unique username	API
-X	Try to register admin with missing required fields	Registration fails due to incomplete data	API
+A	Try to register new admin with unique username and valid info	Successful admin registration	API
+B	Try to register admin with existing username	Registration fails due to non-unique username	API
+C	Try to register admin with missing required fields	Registration fails due to incomplete data	API
 Feature #8 – Admin Login with JWT
 ID	Condition	Expected Result	Layer
-Y	Log in with valid admin credentials	Successful login and admin JWT issued	API
-Z	Log in with invalid admin credentials	Login fails with error message	API
-AA	Access admin-only route without JWT	Access denied due to missing authentication	API
-AB	Access admin-only route with student JWT	Access denied due to insufficient privileges	API
+A	Log in with valid admin credentials	Successful login and admin JWT issued	API
+B	Log in with invalid admin credentials	Login fails with error message	API
+C	Access admin-only route without JWT	Access denied due to missing authentication	API
+D	Access admin-only route with student JWT	Access denied due to insufficient privileges	API
 Feature #9 – Create a New Class (Admin Login Needed)
 ID	Condition	Expected Result	Layer
-AC	Try to create class with valid admin JWT and valid data	Class successfully created	API
-AD	Try to create class without authentication	Access denied due to missing JWT	API
-AE	Try to create class with missing required fields	Class creation fails with validation errors	API
-AF	Try to create class with past date/time	Class creation fails due to invalid schedule	API
+A	Try to create class with valid admin JWT and valid data	Class successfully created	API
+B	Try to create class without authentication	Access denied due to missing JWT	API
+C	Try to create class with missing required fields	Class creation fails with validation errors	API
+D	Try to create class with past date/time	Class creation fails due to invalid schedule	API
 Feature #10 – Remove Class (Admin Login Needed)
 ID	Condition	Expected Result	Layer
-AG	Try to remove existing class with valid admin JWT	Class successfully removed from listings	API
-AH	Try to remove class without authentication	Access denied due to missing JWT	API
-AI	Try to remove class with invalid or student JWT	Access denied due to insufficient privileges	API
-AJ	Try to access a removed class	Error returned indicating class not found or inactive	API
+A	Try to remove existing class with valid admin JWT	Class successfully removed from listings	API
+B	Try to remove class without authentication	Access denied due to missing JWT	API
+C	Try to remove class with invalid or student JWT	Access denied due to insufficient privileges	API
+D	Try to access a removed class	Error returned indicating class not found or inactive	API

@@ -36,6 +36,8 @@ describe('Feature #1 - Student Registration', function() {
     const res = await request(baseURL)
       .post('/api/students/register')
       .send(testData[3]);
+    expect(res.body).to.have.property('error');
+    expect(res.body.error).to.not.equal('Username already exists');
     expect(res.status).to.equal(400);
   });
 
@@ -43,6 +45,8 @@ describe('Feature #1 - Student Registration', function() {
     const res = await request(baseURL)
       .post('/api/students/register')
       .send(testData[4]);
+    expect(res.body).to.have.property('error');
+    expect(res.body.error).to.not.equal('Username already exists');
     expect(res.status).to.equal(400);
   });
 });
